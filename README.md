@@ -13,5 +13,10 @@ python main.py
 ```
 Ele irá imprimir no console o resultado da análise léxica e irá gerar (ou sobrescrever) o arquivo `result.txt` contendo o resultado.
 
+O código analisado será do arquivo `teste.py`.
+
+## Exemplo
+O arquivo `result.txt` deste repositório contém exemplos de saída de código deste script.
+
 ## Observações:
-### No momento o script não possui suporte para strings (textos entre aspas), apresentando comportamentos inexperados com sua presença
+### No momento o script não possui suporte para strings (textos entre aspas), apresentando comportamentos inesperados com sua presença

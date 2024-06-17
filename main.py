@@ -54,7 +54,7 @@ class PythonLexicalAnalyzer:
 
     def spacing_tokens(self) -> None:
         self.result = self.result.split()
-        self.result = " ".join(self.result)
+        self.result = "\n".join(self.result)
 
     def replace_numbers(self) -> None:
         self.result = re.sub(r'(\d+)', r'NUMBER=\1 ', self.result)
