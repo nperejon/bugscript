@@ -1,0 +1,30 @@
+[
+    {
+        "type": "keyword",
+        "value": "cryInt"   
+    },
+    {
+        "type": "text",
+        "value": "intTabuada"   
+    },
+    {
+        "type": "simbols",
+        "value": "="   
+    },
+    {
+        "type": "simbols",
+        "value": "'"   
+    },
+    {
+        "type": "text",
+        "value": "#"   
+    },
+    {
+        "type": "simbols",
+        "value": "'"   
+    },
+    {
+        "type": "simbols",
+        "value": ";"   
+    }
+]

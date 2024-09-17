@@ -1,5 +1,5 @@
 //Declaraçã
-cryInt intTabuada = 5 ;
+abc intTabuada = 5 ;
 cryInt i = 1;
 
 goAway(i <= 10){
