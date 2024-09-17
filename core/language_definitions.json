@@ -1,0 +1,85 @@
+{
+    "KW" : {
+        "var" : [
+            {
+                "TOKEN": "cryInt",
+                "TYPE": "int"
+            },
+            {
+                "TOKEN": "cryString",
+                "TYPE": "str"
+            },
+            {
+                "TOKEN": "cryBool",
+                "TYPE": "bool"
+            },
+            {
+                "TOKEN": "[]",
+                "TYPE": "list"
+            }
+        ],
+        "flow" : [
+            {
+                "TOKEN": "goAway",
+                "TYPE": "while"
+            },
+            {
+                "TOKEN": "bugCheck",
+                "TYPE": "if"
+            },
+            {
+                "TOKEN": "endBugCheck",
+                "TYPE": "else"
+            },
+            {
+                "TOKEN": "flyAway",
+                "TYPE": "break"
+            }
+        ],
+        "artimetical_operator" :
+        [
+            {
+                "TOKEN": "moreBug",
+                "TYPE": "ADD"
+            },
+            {
+                "TOKEN": "minusBug",
+                "TYPE": "MINUS"
+            }
+        ],
+        "logical" :[
+            {
+                "TOKEN": "true",
+                "TYPE": "true"
+            },
+            {
+                "TOKEN": "false",
+                "TYPE": "false"
+            }
+        ],
+        "io": [
+            {
+                "TOKEN": "inBug",
+                "TYPE": "INPUT"
+            },
+            {
+                "TOKEN": "outBug",
+                "TYPE": "OUTPUT"
+            }
+        ]
+    },
+    "simbols" : {
+        "STRING" : "\"",
+        "COMMENT" : "//",
+        "OPEN_BRACKET": "[",
+        "CLOSE_BRACKET": "]",
+        "LESS_THAN": "<",
+        "MORE_THAN": ">",
+        "ATRIBUTION": "=",
+        "START_BLOCK": "{",
+        "END_BLOCK": "}",
+        "END_STATEMENT": ";",
+        "OPEN_PARENTESIS": "(",
+        "CLOSE_PARENTESIS": ")"
+    }
+}

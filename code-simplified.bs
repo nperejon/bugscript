@@ -1,0 +1,8 @@
+//Declaraçã
+cryInt intTabuada = 5 ;
+cryInt i = 1;
+
+goAway(i <= 10){
+  outBug ("{ intTabuada } x { i } = { i * intTabuada }");
+  moreBug ( i , 1 );
+} flyAway;

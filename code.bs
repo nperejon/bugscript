@@ -1,0 +1,51 @@
+// Declaração de variáveis
+cryInt numeroDeUsuarios = 3;
+cryInt indice = 0;
+cryString[] usuarios[3];
+cryString usuarioAtual;
+cryBool cadastroCompleto = false;
+
+// Função para cadastrar usuários
+goAway(indice < numeroDeUsuarios) {
+  outBug "Digite o nome do usuário:";
+  inBug usuarioAtual;
+  
+  // Verifica se o nome do usuário já existe
+  cryBool usuarioExistente = false;
+  cryInt i = 0;
+  
+  goAway(i < indice) {
+    bugCheck(usuarios[i] == usuarioAtual) {
+      usuarioExistente = true;
+      flyAway;
+    } flyAway;
+    i = moreBug(i, 1);
+  } flyAway;
+  
+  bugCheck(usuarioExistente) {
+    outBug "Usuário já cadastrado. Tente outro nome.";
+  } endBugCheck {
+    usuarios[indice] = usuarioAtual;
+    indice = moreBug(indice, 1);
+  }
+} flyAway;
+
+// Verificar se todos os usuários foram cadastrados
+bugCheck(indice == numeroDeUsuarios) {
+  cadastroCompleto = true;
+  outBug "Cadastro completo!";
+} endBugCheck {
+  outBug "Erro no cadastro dos usuários.";
+}
+
+// Tentativa de acessar dados dos usuários
+crash {
+  cryInt j = 0;
+  goAway(j < numeroDeUsuarios) {
+    debug("Usuário ");
+    outBug usuarios[j];
+    j = moreBug(j, 1);
+  } flyAway;
+} smash {
+  outBug "Erro ao acessar dados dos usuários.";
+}
