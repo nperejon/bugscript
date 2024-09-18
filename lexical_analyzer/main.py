@@ -8,6 +8,7 @@ class TokenType(Enum):
     aritmetical_operator = 3
     simbols = 4
     text = 5
+    condition_operator = 6
 
 
 class Token:
@@ -66,42 +67,80 @@ class PythonLexicalAnalyzer:
 
         text = ""
 
-        for char in self.result:
+        # for char in self.result:
             
+        #     # KeyWord Tokens
+        #     if text in self.keywords_tokens:
+        #         print(1, ' ', text)
+        #         add_new_token(text, TokenType.keyword)
+        #         text = ''
+            
+        #     # Aritmetical Tokens
+        #     if text in self.aritmetical_tokens:
+        #         print(2, ' ', text)
+        #         add_new_token(text, TokenType.aritmetical_operator)
+        #         text = ''
+
+        #     # Logical Tokens
+        #     if text in self.logical_operator_tokens:
+        #         print(3, ' ', text)
+        #         add_new_token(text, TokenType.logical_operator)
+        #         text = ''
+
+        #     # Simbols
+        #     if text in self.simbols:
+        #         print(4, ' ', text)
+        #         add_new_token(text, TokenType.simbols)
+        #         text = ''
+
+        #     # Text (Value or)
+        #     if char == " ":
+        #         print(5, ' ', text)
+        #         if text != '':
+        #             add_new_token(text, TokenType.text)
+        #             text = ''
+        #         else:
+        #             text += char
+        #         continue
+
+        #     text += char
+
+        self.result = " ".join(self.result.split())
+        next_is_simbol = False
+        for char in self.result:
             # KeyWord Tokens
             if text in self.keywords_tokens:
-                print(1, ' ', text)
                 add_new_token(text, TokenType.keyword)
                 text = ''
             
             # Aritmetical Tokens
             if text in self.aritmetical_tokens:
-                print(2, ' ', text)
                 add_new_token(text, TokenType.aritmetical_operator)
                 text = ''
 
             # Logical Tokens
             if text in self.logical_operator_tokens:
-                print(3, ' ', text)
                 add_new_token(text, TokenType.logical_operator)
                 text = ''
 
             # Simbols
-            if text in self.simbols:
-                print(4, ' ', text)
+            if char in self.simbols:
+                if text != "":
+                    next_is_simbol = True
+                    add_new_token(text, TokenType.text)
+                    text = ''
+
+            if next_is_simbol:
+                next_is_simbol = False
                 add_new_token(text, TokenType.simbols)
                 text = ''
 
             # Text (Value or)
             if char == " ":
-                print(5, ' ', text)
-                if text != '':
+                if text != "":
                     add_new_token(text, TokenType.text)
-                    text = ''
-                else:
-                    text += char
-                continue
-
+                    text = ""
+                    continue
             text += char
             
 
