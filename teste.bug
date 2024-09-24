@@ -1,19 +1,17 @@
-cryInt item = [1, 2, 3]
+# Variable declaration
+cryInt item = 1
 
-# loop example
-goAway cryInt i = 0 < moreBug(item):
-    outBug(item[i])
-    i = moreBug(i, 1)
-flyAway
+# Function call (addition)
+cryInt i = moreBug(i, 1)
 
-# while example
+# While loop
 cryInt i = 0
-goAway i < moreBug(item):
-    outBug(item[i])
+goAway i < 10:
     i = moreBug(i, 1)
+    outBug(i)
 flyAway
 
-# condition example
+# Conditional statement
 cryBool condition = true
 bugCheck condition:
     outBug(true)

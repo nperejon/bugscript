@@ -11,6 +11,19 @@ class FileManager:
         with open(file_path_to_write_result, 'w+', encoding="utf-8") as file:
             file.write(content)
 
+def print_ast(node, indent=""):
+    if isinstance(node, dict):
+        print(f"{indent}{node.get('type', 'Unknown')}")
+        for key, value in node.items():
+            if key != 'type':
+                print(f"{indent}  {key}:")
+                print_ast(value, indent + "    ")
+    elif isinstance(node, list):
+        for item in node:
+            print_ast(item, indent + "  ")
+    else:
+        print(f"{indent}{node}")
+
 if __name__ == '__main__':
     file_path_to_extract = "teste.bug"
     file_path_to_write_result = "result.txt"
@@ -19,16 +32,24 @@ if __name__ == '__main__':
     content = file_manager.get_content_file(file_path_to_extract)
 
     lexical_analyzer = BugScriptLexicalAnalyzer(content)
-    tokens = lexical_analyzer.result.split()
+    tokens = lexical_analyzer.get_tokens()
+    tokens.append(('EOF', ''))  # Add EOF token
 
     # Debug: Print tokens for tracing
-    print("Tokens:", tokens)
+    print("Tokens:")
+    for i, token in enumerate(tokens):
+        print(f"{i}: {token[0]} - {token[1]}")
 
     parser = Parser(tokens)
     try:
         ast = parser.parse()
-        print("AST:", ast)
+        print("\nAbstract Syntax Tree:")
+        print_ast(ast)
+    except SyntaxError as e:
+        print(f"Syntax Error: {e}")
     except Exception as e:
         print(f"Unexpected error: {e}")
+        import traceback
+        traceback.print_exc()
 
-    file_manager.write_result_in_file(file_path_to_write_result, lexical_analyzer.result)
+    file_manager.write_result_in_file(file_path_to_write_result, str(tokens))
