@@ -1,0 +1,21 @@
+cryInt item = [1, 2, 3]
+
+# loop example
+goAway cryInt i = 0 < moreBug(item):
+    outBug(item[i])
+    i = moreBug(i, 1)
+flyAway
+
+# while example
+cryInt i = 0
+goAway i < moreBug(item):
+    outBug(item[i])
+    i = moreBug(i, 1)
+flyAway
+
+# condition example
+cryBool condition = true
+bugCheck condition:
+    outBug(true)
+endBugCheck:
+    outBug(false)
