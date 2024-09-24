@@ -1,4 +1,3 @@
-Claro, vou criar uma documentação semelhante para o parser em formato Markdown. Aqui está o conteúdo raw do parser.md:
 # Documentação do Analisador Sintático (Parser) do BugScript
 
 ## Visão Geral
@@ -15,13 +14,13 @@ def __init__(self, tokens):
 
 tokens: Uma lista de tokens produzida pelo analisador léxico.
 
-Método Principal
+### Método Principal
 ```python
 def parse(self):
 ```
 Este método inicia o processo de análise sintática, retornando uma lista de declarações (statements) que representam a estrutura do programa.
-Métodos de Análise
 
+### Métodos de Análise
 ```python
 def statement(self):
 ```
@@ -73,7 +72,7 @@ def primary(self):
 Analisa expressões primárias (números, identificadores, booleanos).
 
 
-Métodos Auxiliares
+### Métodos Auxiliares
 
 ```python
 def match(self, *types):
@@ -111,11 +110,11 @@ def previous(self):
 Retorna o token anterior.
 
 
-Estrutura da Árvore Sintática Abstrata (AST)
+### Estrutura da Árvore Sintática Abstrata (AST)
 O parser gera uma Árvore Sintática Abstrata (AST) que representa a estrutura do programa. Cada nó da árvore é um dicionário Python com informações sobre o tipo de nó e seus componentes.
 Exemplos de nós:
 
-Declaração de Variável:
+### Declaração de Variável:
 ```python
 {
   'type': 'VARIABLE_DECLARATION',
@@ -125,7 +124,7 @@ Declaração de Variável:
 }
 ```
 
-Declaração de Array:
+### Declaração de Array:
 ```python
 {
   'type': 'ARRAY_DECLARATION',
@@ -135,7 +134,7 @@ Declaração de Array:
 }
 ```
 
-Estrutura While:
+### Estrutura While:
 ```python
 {
   'type': 'WHILE',
@@ -144,7 +143,7 @@ Estrutura While:
 }
 ```
 
-Estrutura If-Else:
+### Estrutura If-Else:
 ```python
 {
   'type': 'IF',
@@ -154,11 +153,10 @@ Estrutura If-Else:
 }
 ```
 
-
-Tratamento de Erros
+### Tratamento de Erros
 O parser utiliza exceções do tipo SyntaxError para reportar erros de sintaxe. Quando um erro é encontrado, uma mensagem descritiva é fornecida junto com informações sobre o token que causou o erro.
-Fluxo de Processamento
 
+### Fluxo de Processamento
 O parser recebe a lista de tokens do analisador léxico.
 O método parse() é chamado para iniciar a análise.
 O parser analisa cada statement sequencialmente.
@@ -168,5 +166,5 @@ A árvore sintática abstrata (AST) é construída à medida que a análise prog
 Se um erro de sintaxe for encontrado, uma exceção é lançada.
 O processo continua até que todos os tokens sejam consumidos ou um erro seja encontrado.
 
-Considerações Finais
+### Considerações Finais
 O analisador sintático é uma parte crucial do compilador BugScript. Ele verifica se o programa está estruturalmente correto de acordo com as regras gramaticais da linguagem e produz uma representação intermediária (AST) que pode ser usada para análise semântica e geração de código. A precisão e eficiência do parser são essenciais para a correta interpretação e execução dos programas BugScript.
