@@ -1,1 +1,19 @@
-a = "kkj a1 2"
+# Variable declaration
+cryInt item = 1
+
+# Function call (addition)
+cryInt i = moreBug(i, 1)
+
+# While loop
+cryInt i = 0
+goAway i < 10:
+    i = moreBug(i, 1)
+    outBug(i)
+flyAway
+
+# Conditional statement
+cryBool condition = true
+bugCheck condition:
+    outBug(true)
+endBugCheck:
+    outBug(false)
