@@ -13,7 +13,7 @@ class Parser:
 
     def declaration(self):
         try:
-            if self.match('KW_INT', 'KW_BOOL', 'KW_STRING'):
+            if self.match('KW_INT', 'KW_FLOAT', 'KW_BOOL', 'KW_STRING'):
                 return self.var_declaration()
             return self.statement()
         except SyntaxError as error:
@@ -28,7 +28,8 @@ class Parser:
         if self.match('EQUAL'):
             initializer = self.expression()
         
-        self.consume('NEWLINE', "Expect newline after variable declaration.")
+        if not self.match('NEWLINE') and not self.is_at_end():
+            raise SyntaxError("Expect newline or EOF after variable declaration.")
         return {'type': 'VAR_DECLARATION', 'var_type': type_token, 'name': name, 'initializer': initializer}
 
     def statement(self):
@@ -66,7 +67,7 @@ class Parser:
         self.consume('NEWLINE', "Expect newline after ':'.")
         
         then_branch = []
-        while not self.check('KW_ELSE') and not self.is_at_end():
+        while not self.check('KW_ELSE') and not self.check('KW_IF') and not self.is_at_end():
             stmt = self.statement()
             if stmt:
                 then_branch.append(stmt)
@@ -85,7 +86,8 @@ class Parser:
 
     def output_statement(self):
         value = self.expression()
-        self.consume('NEWLINE', "Expect newline after output statement.")
+        if not self.match('NEWLINE') and not self.is_at_end():
+            raise SyntaxError("Expect newline after output statement.")
         return {'type': 'OUTPUT', 'value': value}
 
     def break_statement(self):
@@ -110,7 +112,7 @@ class Parser:
     def equality(self):
         expr = self.comparison()
         
-        while self.match('EQUAL_EQUAL', 'BANG_EQUAL'):
+        while self.match('LOGICAL_EQUAL', 'LOGICAL_NEQUAL'):
             operator = self.previous()
             right = self.comparison()
             expr = {'type': 'BINARY', 'left': expr, 'operator': operator, 'right': right}
@@ -148,7 +150,7 @@ class Parser:
         return expr
 
     def unary(self):
-        if self.match('SUB_OPERATOR'):
+        if self.match('LOGICAL_NOT', 'OP_MINUS'):
             operator = self.previous()
             right = self.unary()
             return {'type': 'UNARY', 'operator': operator, 'right': right}
@@ -159,23 +161,39 @@ class Parser:
         if self.match('KW_FALSE'): return {'type': 'LITERAL', 'value': False}
         if self.match('KW_TRUE'): return {'type': 'LITERAL', 'value': True}
         if self.match('NUMBER'):
+            return {'type': 'LITERAL', 'value': int(self.previous()[1])}
+        if self.match('DECIMAL'):
             return {'type': 'LITERAL', 'value': float(self.previous()[1])}
         if self.match('IDENT'):
             return {'type': 'VARIABLE', 'name': self.previous()}
+        if self.match('TEXT'):
+            return {'type': 'LITERAL', 'value': self.previous()}
         if self.match('KW_ADDITION'):
             return self.function_call()
+        if self.match('KW_SUBTRACTION'):
+            return self.function_call()
+        if self.match('KW_MULTIPLY'):
+            return self.function_call()
+        if self.match('KW_DIVISION'):
+            return self.function_call()
+        if self.match('OPEN_PAREN'):
+            expr = self.expression()
+            self.consume('CLOSE_PAREN', "Expect ')' after expression.")
+            return expr
         
         raise SyntaxError(f"Expect expression. Got {self.peek()}")
 
     def function_call(self):
         function = self.previous()
+        self.consume('OPEN_PAREN', "Expect '(' after function name.")
         arguments = []
         
-        while not self.check('NEWLINE'):
+        while not self.check('CLOSE_PAREN') and not self.is_at_end():
             if len(arguments) > 0:
                 self.consume('COMMA', "Expect ',' between arguments.")
             arguments.append(self.expression())
         
+        self.consume('CLOSE_PAREN', "Expect ')' after arguments list.")
         return {'type': 'CALL', 'function': function, 'arguments': arguments}
 
     def match(self, *types):
@@ -216,7 +234,7 @@ class Parser:
             if self.previous()[0] == 'NEWLINE':
                 return
 
-            if self.peek()[0] in ['KW_INT', 'KW_BOOL', 'KW_STRING', 'KW_IF', 'KW_WHILE', 'KW_BREAK', 'KW_OUTPUT']:
+            if self.peek()[0] in ['KW_INT', 'KW_FLOAT', 'KW_BOOL', 'KW_STRING', 'KW_IF', 'KW_WHILE', 'KW_BREAK', 'KW_OUTPUT']:
                 return
 
             self.advance()

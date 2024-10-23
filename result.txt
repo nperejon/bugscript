@@ -1,1 +1,6 @@
-[('NEWLINE', '\n'), ('KW_INT', 'cryInt'), ('IDENT', 'item'), ('EQUAL', '='), ('NUMBER', '1'), ('NEWLINE', '\n'), ('NEWLINE', '\n'), ('NEWLINE', '\n'), ('KW_INT', 'cryInt'), ('IDENT', 'i'), ('EQUAL', '='), ('KW_ADDITION', 'moreBug'), ('IDENT', 'i'), ('COMMA', ','), ('NUMBER', '1'), ('NEWLINE', '\n'), ('NEWLINE', '\n'), ('NEWLINE', '\n'), ('KW_INT', 'cryInt'), ('IDENT', 'i'), ('EQUAL', '='), ('NUMBER', '0'), ('NEWLINE', '\n'), ('KW_WHILE', 'goAway'), ('IDENT', 'i'), ('LESS_THAN', '<'), ('NUMBER', '10'), ('COLON', ':'), ('NEWLINE', '\n'), ('IDENT', 'i'), ('EQUAL', '='), ('KW_ADDITION', 'moreBug'), ('IDENT', 'i'), ('COMMA', ','), ('NUMBER', '1'), ('NEWLINE', '\n'), ('KW_OUTPUT', 'outBug'), ('IDENT', 'i'), ('NEWLINE', '\n'), ('KW_BREAK', 'flyAway'), ('NEWLINE', '\n'), ('NEWLINE', '\n'), ('NEWLINE', '\n'), ('KW_BOOL', 'cryBool'), ('IDENT', 'condition'), ('EQUAL', '='), ('KW_TRUE', 'true'), ('NEWLINE', '\n'), ('KW_IF', 'bugCheck'), ('IDENT', 'condition'), ('COLON', ':'), ('NEWLINE', '\n'), ('KW_OUTPUT', 'outBug'), ('KW_TRUE', 'true'), ('NEWLINE', '\n'), ('KW_ELSE', 'endBugCheck'), ('COLON', ':'), ('NEWLINE', '\n'), ('KW_OUTPUT', 'outBug'), ('KW_FALSE', 'false'), ('OPEN_PAREN', ''), ('EOF', '')]
+IDENT - a
+EQUAL - =
+TEXT - "kkj a1 2"
+NEWLINE - 
+
+EOF - 

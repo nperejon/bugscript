@@ -1,5 +1,6 @@
 from lexer import BugScriptLexicalAnalyzer
 from parser import Parser
+import json
 
 class FileManager:
     def get_content_file(self, file_path_to_extract) -> str:
@@ -10,6 +11,9 @@ class FileManager:
     def write_result_in_file(self, file_path_to_write_result: str, content: str) -> None:
         with open(file_path_to_write_result, 'w+', encoding="utf-8") as file:
             file.write(content)
+
+def print_as_json(node):
+    return json.dumps(node)
 
 def print_ast(node, indent=""):
     if isinstance(node, dict):
@@ -40,6 +44,8 @@ if __name__ == '__main__':
     tokens = lexical_analyzer.get_tokens()
     tokens.append(('EOF', ''))  # Add EOF token
 
+    tokens_json = print_as_json(tokens)
+
     # Debug: Print tokens for tracing
     print("Tokens:")
     for i, token in enumerate(tokens):
@@ -48,6 +54,8 @@ if __name__ == '__main__':
     parser = Parser(tokens)
     try:
         ast = parser.parse()
+        ast_json = print_as_json(ast)
+        print(ast_json)
         print("\nAbstract Syntax Tree:")
         print_ast(ast)
     except SyntaxError as e:

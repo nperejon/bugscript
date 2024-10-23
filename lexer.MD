@@ -34,12 +34,15 @@ O analisador léxico usa um dicionário para mapear palavras-chave do BugScript 
 ```python
 keywords = {
     'cryInt': 'KW_INT',
+    'cryFloat': 'KW_FLOAT',
     'cryString': 'KW_STRING',
     'cryBool': 'KW_BOOL',
     'inBug': 'KW_INPUT',
     'outBug': 'KW_OUTPUT',
     'minusBug': 'KW_SUBTRACTION',
     'moreBug': 'KW_ADDITION',
+    'timesBug': 'KW_MULTIPLY', 
+    'divideBug': 'KW_DIVISION',
     'bugCheck': 'KW_IF',
     'endBugCheck': 'KW_ELSE',
     'goAway': 'KW_WHILE',
