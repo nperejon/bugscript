@@ -39,21 +39,21 @@ class BugScriptLexicalAnalyzer:
             ('CLOSE_BRACKET', r'\}'),
             ('COMMA', r','),
             ('COLON', r':'),
-            ('TEXT', r'\"[^\"]*\"|\'[^\']*\''),
+            ('TEXT', r'\"([^\\\"]|\\.)*\"|\'([^\\\']|\\.)*\''),
             ('NEWLINE', r'\n'),
             ('WHITESPACE', r'\s+'),
             ('LOGICAL_AND', r'&&'),
             ('LOGICAL_OR', r'\|\|'),
             ('LOGICAL_NOT', r'!'),
+            ('EQUAL_EQUAL', r'=='),
+            ('BANG_EQUAL', r'!='),
+            ('OP_INCREMENT', r'\+\+'),
+            ('OP_DECREMENT', r'--'),
             ('OP_PLUS', r'\+'),
             ('OP_MINUS', r'-'),
             ('OP_MULTIPLY', r'\*'),
             ('OP_DIVIDE', r'/'),
             ('OP_MOD', r'%'),
-            ('OP_INCREMENT', r'\+\+'),
-            ('OP_DECREMENT', r'--'),
-
-
         ]
 
         regex = '|'.join(f'(?P<{name}>{pattern})' for name, pattern in patterns)

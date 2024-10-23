@@ -130,7 +130,7 @@ class Parser:
     def term(self):
         expr = self.factor()
         
-        while self.match('ADD_OPERATOR', 'SUB_OPERATOR'):
+        while self.match('OP_PLUS', 'OP_MINUS'):
             operator = self.previous()
             right = self.factor()
             expr = {'type': 'BINARY', 'left': expr, 'operator': operator, 'right': right}

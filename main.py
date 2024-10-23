@@ -29,7 +29,12 @@ if __name__ == '__main__':
     file_path_to_write_result = "result.txt"
     
     file_manager = FileManager()
-    content = file_manager.get_content_file(file_path_to_extract)
+    try:
+        content = file_manager.get_content_file(file_path_to_extract)
+    except FileNotFoundError:
+        print(f"File not found: {file_path_to_extract}")
+    except Exception as e:
+        print(f"Error reading file: {e}")
 
     lexical_analyzer = BugScriptLexicalAnalyzer(content)
     tokens = lexical_analyzer.get_tokens()
@@ -52,4 +57,5 @@ if __name__ == '__main__':
         import traceback
         traceback.print_exc()
 
-    file_manager.write_result_in_file(file_path_to_write_result, str(tokens))
+    formatted_tokens = "\n".join([f"{token[0]} - {token[1]}" for token in tokens])
+    file_manager.write_result_in_file(file_path_to_write_result, formatted_tokens)
