@@ -57,7 +57,8 @@ class Parser:
                 body.append(stmt)
         
         self.consume('KW_BREAK', "Expect 'flyAway' to end while loop.")
-        self.consume('NEWLINE', "Expect newline after 'flyAway'.")
+        if not self.match('NEWLINE') and not self.is_at_end():
+            raise SyntaxError("Expect newline after 'flyAway'.")
         
         return {'type': 'WHILE', 'condition': condition, 'body': body}
 
@@ -91,14 +92,16 @@ class Parser:
         return {'type': 'OUTPUT', 'value': value}
 
     def break_statement(self):
-        self.consume('NEWLINE', "Expect newline after 'flyAway'.")
+        if not self.match('NEWLINE') and not self.is_at_end():
+            raise SyntaxError("Expect newline after 'flyAway'.")
         return {'type': 'BREAK'}
 
     def assignment_statement(self):
         name = self.consume('IDENT', "Expect variable name.")
         self.consume('EQUAL', "Expect '=' after variable name.")
         value = self.expression()
-        self.consume('NEWLINE', "Expect newline after assignment.")
+        if not self.match('NEWLINE') and not self.is_at_end():
+            raise SyntaxError("Expect newline after assignment.")
         return {'type': 'ASSIGNMENT', 'name': name, 'value': value}
 
     def expression_statement(self):

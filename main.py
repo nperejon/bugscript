@@ -1,5 +1,7 @@
 from lexer import BugScriptLexicalAnalyzer
 from parser import Parser
+from semantic import SemanticAnalyzer
+from semantic_error import SemanticError
 import json
 
 class FileManager:
@@ -45,6 +47,7 @@ if __name__ == '__main__':
     tokens.append(('EOF', ''))  # Add EOF token
 
     tokens_json = print_as_json(tokens)
+    print("\n" + "JSON TOKENS:\n" + tokens_json + "\n")
 
     # Debug: Print tokens for tracing
     print("Tokens:")
@@ -55,11 +58,18 @@ if __name__ == '__main__':
     try:
         ast = parser.parse()
         ast_json = print_as_json(ast)
-        print(ast_json)
+        print("\n" + "AST TOKENS:\n" + ast_json)
         print("\nAbstract Syntax Tree:")
         print_ast(ast)
+
+        semantic_analyzer = SemanticAnalyzer()
+        semantic_analyzer.analyze(ast)
+        print("\nSemantic analysis completed successfully.")
+
     except SyntaxError as e:
         print(f"Syntax Error: {e}")
+    except SemanticError as e:
+        print(f"Semantic Error: {e}")
     except Exception as e:
         print(f"Unexpected error: {e}")
         import traceback

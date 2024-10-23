@@ -15,7 +15,7 @@ IDENT - i
 EQUAL - =
 KW_ADDITION - moreBug
 OPEN_PAREN - (
-IDENT - i
+IDENT - item
 COMMA - ,
 NUMBER - 1
 CLOSE_PAREN - )
@@ -23,12 +23,6 @@ NEWLINE -
 
 NEWLINE - 
 
-NEWLINE - 
-
-KW_INT - cryInt
-IDENT - i
-EQUAL - =
-NUMBER - 0
 NEWLINE - 
 
 KW_WHILE - goAway
