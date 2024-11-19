@@ -45,11 +45,12 @@ keywords = {
     'divideBug': 'KW_DIVISION',
     'bugCheck': 'KW_IF',
     'endBugCheck': 'KW_ELSE',
+    'checked':'KW_END_IF',
     'goAway': 'KW_WHILE',
     'flyAway': 'KW_BREAK',
     'true': 'KW_TRUE',
     'false': 'KW_FALSE',
-    'end': 'KW_END'
+    'endCheck': 'KW_END'
 }
 ```
 

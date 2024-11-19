@@ -82,8 +82,6 @@ class CodeGenerator:
         self.result = self.result.replace("KW_OUTPUT - outBug\n", "\nprint")
         self.result = self.result.replace("inBug", "input")
 
-        # self.result = re.sub("KW_FALSE - (.*)", "False", self.result)
-
         self.__handle_scope_blocks()
 
         return self.result
