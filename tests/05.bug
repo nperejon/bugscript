@@ -1,0 +1,8 @@
+cryInt idade = int(inBug("Digite a sua idade: "))
+
+# Conditional check by conditional expression
+bugCheck idade < 18:
+    outBug("Você é menor de idade!")
+endBugCheck:
+    outBug("Você é maior de idade!")
+endCheck

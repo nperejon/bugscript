@@ -1,0 +1,6 @@
+# While loop (counter)
+cryInt numero = 0
+goAway numero <= 10:
+    outBug(numero)
+    numero = moreBug(numero, 1)
+flyAway

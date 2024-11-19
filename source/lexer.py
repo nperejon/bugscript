@@ -22,6 +22,7 @@ class BugScriptLexicalAnalyzer:
             ('KW_WHILE', r'\bgoAway\b'),
             ('KW_IF', r'\bbugCheck\b'),
             ('KW_ELSE', r'\bendBugCheck\b'),
+            ('KW_END_IF', r'\bchecked\b'),
             ('KW_BREAK', r'\bflyAway\b'),
             ('KW_TRUE', r'\btrue\b'),
             ('KW_FALSE', r'\bfalse\b'),

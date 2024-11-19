@@ -1,0 +1,5 @@
+# Aritmetical Operations
+
+cryInt i = 0
+outBug (moreBug(i, 1))
+outBug (minusBug(i, 1))

@@ -1,5 +1,5 @@
-from symbol_table import SymbolTable
-from semantic_error import SemanticError
+from source.symbol_table import SymbolTable
+from source.semantic_error import SemanticError
 
 class SemanticAnalyzer:
     def __init__(self):

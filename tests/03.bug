@@ -1,0 +1,7 @@
+# Conditional variable
+cryBool aprovado = true
+bugCheck aprovado:
+    outBug("Você foi aprovado!")
+endBugCheck:
+    outBug("Você não foi aprovado!")
+endCheck
